@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulls Vision Trading System - Professional Stock Trading Bootcamp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#1e3a8a',
+                        secondary: '#1e40af',
+                        accent: '#f59e0b',
+                        light: '#f8fafc',
+                        gold: '#d97706',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #2563eb 100%);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
+        }
+        .section-divider {
+            background: linear-gradient(90deg, transparent 0%, #f59e0b 50%, transparent 100%);
+            height: 1px;
+        }
+        .image-container {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(30, 58, 138, 0.2);
+            border: 2px solid #f59e0b;
+        }
+        .stats-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 2px solid #f59e0b;
+            box-shadow: 0 8px 32px rgba(245, 158, 11, 0.1);
+        }
+        .elite-accent {
+            color: #f59e0b;
+        }
+    </style>
+</head>
+<body class="bg-white text-primary antialiased">
+    
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white flex items-center">
+        <div class="container mx-auto px-6 py-20">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6 text-gradient leading-tight">
+                        FOR ACTIVE TRADERS ONLY
+                    </h1>
+                    <div class="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-8"></div>
+                    <p class="text-xl md:text-2xl font-light leading-relaxed max-w-4xl mx-auto">
+                        In 60 days or less, our "Bulls Vision" trading system will take you from struggling to consistent profitability
+                    </p>
+                    <p class="text-lg md:text-xl font-medium mt-4 text-yellow-200">
+                        ---- Proven on 7,057+ students and counting
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="k2()" class="btn-primary text-white px-12 py-4 rounded-lg text-xl font-semibold border-2 border-yellow-400 hover:border-yellow-300 transition-all duration-300 shadow-lg">
+                        CONTACT US NOW
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-light">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="stats-card p-8 rounded-lg">
+                        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-blue-900">
+                            Over <span class="elite-accent">7,000+</span> Students Trained
+                        </h2>
+                        <p class="text-lg leading-relaxed text-blue-800 mb-6">
+                            Since 2008, we have conducted over <span class="elite-accent font-semibold">16 years</span> of 60-day live trading bootcamps, training more than 7,000 students.
+                        </p>
+                        <p class="text-lg leading-relaxed text-blue-800 font-medium">
+                            Many of the <span class="elite-accent">"big name"</span> traders you're familiar with have attended the very bootcamp you're watching now!
+                        </p>
+                    </div>
+                    <div class="image-container">
+                        <img src="img/1.webp" 
+                             alt="Trading Statistics" 
+                             class="w-full h-auto object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-blue-900">
+                    Real Results From <span class="text-gradient">Elite</span> Students
+                </h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <div class="image-container">
+                        <img src="img/2.png" 
+                             alt="Student Testimonial" 
+                             class="w-full h-auto object-cover">
+                    </div>
+                    <div class="image-container">
+                        <img src="img/3.webp" 
+                             alt="Student Success" 
+                             class="w-full h-auto object-cover">
+                    </div>
+                    <div class="image-container">
+                        <img src="img/4.webp" 
+                             alt="Trading Results" 
+                             class="w-full h-auto object-cover">
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="image-container">
+                        <img src="img/5.webp" 
+                             alt="Success Story" 
+                             class="w-full h-auto object-cover">
+                    </div>
+                    <div class="image-container">
+                        <img src="img/6.webp" 
+                             alt="Student Achievement" 
+                             class="w-full h-auto object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Details Section -->
+    <section class="py-20 bg-light">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="image-container">
+                        <img src="img/7.webp" 
+                             alt="Live Trading Course" 
+                             class="w-full h-auto object-cover">
+                    </div>
+                    <div class="stats-card p-8 rounded-lg">
+                        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-blue-900">
+                            <span class="text-gradient">Longest Running</span> Live Course
+                        </h2>
+                        <p class="text-lg leading-relaxed text-blue-800 mb-6">
+                            Since <span class="elite-accent font-semibold">2008</span>, we have conducted over 16 years of 60-day live trading bootcamps, training more than 7,000 students.
+                        </p>
+                        <p class="text-lg leading-relaxed text-blue-800 font-medium">
+                            Many of the <span class="elite-accent">"big name"</span> traders you're familiar with have attended the very bootcamp you're watching now!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Proof Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="grid md:grid-cols-3 gap-8 mb-16">
+                    <div class="image-container">
+                        <img src="img/8.webp" 
+                             alt="Trading Proof" 
+                             class="w-full h-auto object-cover">
+                    </div>
+                    <div class="image-container">
+                        <img src="img/9.webp" 
+                             alt="System Results" 
+                             class="w-full h-auto object-cover">
+                    </div>
+                    <div class="image-container">
+                        <img src="img/10.png" 
+                             alt="Success Metrics" 
+                             class="w-full h-auto object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl md:text-6xl font-bold mb-8 text-gradient">
+                    Ready to Join the Elite?
+                </h2>
+                <p class="text-xl md:text-2xl mb-12 font-light leading-relaxed">
+                    Join thousands of successful traders who have mastered the Bulls Vision system
+                </p>
+                <button onclick="k2()" class="btn-primary text-white px-16 py-6 rounded-lg text-2xl font-bold border-2 border-yellow-400 hover:border-yellow-300 transition-all duration-300 shadow-2xl">
+                    CONTACT US NOW
+                </button>
+                <p class="text-sm mt-6 text-yellow-200">
+                    Limited spots available for serious traders only
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                
+                <!-- Risk Warning -->
+                <div class="bg-yellow-600 bg-opacity-20 border border-yellow-400 rounded-lg p-6 mb-8">
+                    <h3 class="text-lg font-bold text-yellow-200 mb-3">⚠️ RISK WARNING</h3>
+                    <p class="text-sm text-yellow-100 leading-relaxed">
+                        Trading stocks, options, and other financial instruments involves substantial risk and may not be suitable for all investors. Past performance is not indicative of future results. You could sustain a loss of some or all of your initial investment and should not invest money that you cannot afford to lose. Before trading, please consider your level of experience, investment objectives, and seek independent financial advice if necessary. Bulls Vision Trading System provides educational content only and does not provide investment advice or recommendations.
+                    </p>
+                </div>
+
+                <!-- Footer Links -->
+                <div class="grid md:grid-cols-3 gap-8 mb-8">
+                    <div>
+                        <h4 class="text-lg font-semibold text-yellow-400 mb-4">Contact</h4>
+                        <p class="text-blue-200 text-sm">
+                            Professional Trading Education<br>
+                            Since 2008
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-yellow-400 mb-4">Legal</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="https://example.com/privacy-policy" class="text-blue-200 hover:text-yellow-400 transition-colors">Privacy Policy</a></li>
+                            <li><a href="https://example.com/terms-of-service" class="text-blue-200 hover:text-yellow-400 transition-colors">Terms of Service</a></li>
+                            <li><a href="https://example.com/disclaimer" class="text-blue-200 hover:text-yellow-400 transition-colors">Risk Disclaimer</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-yellow-400 mb-4">Education</h4>
+                        <p class="text-blue-200 text-sm">
+                            Elite Trading Bootcamp<br>
+                            7,000+ Students Trained
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Copyright -->
+                <div class="text-center border-t border-blue-700 pt-6">
+                    <div class="section-divider mb-6"></div>
+                    <p class="text-blue-200 text-sm mb-2">
+                        © 2024 Bulls Vision Trading System LLC. All rights reserved. <span class="elite-accent">Elite</span> trading education since 2008.
+                    </p>
+                    <p class="text-blue-300 text-xs">
+                        This website and its content are for educational purposes only. We do not provide investment advice or guarantee trading results.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode support
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        // WhatsApp redirect function
+        function k2() {
+            // Replace with actual WhatsApp link
+            window.open('https://wa.me/1234567890', '_blank');
+        }
+
+        // Smooth scroll enhancement
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.btn-primary');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
