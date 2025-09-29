@@ -483,6 +483,20 @@
                 font-size: 0.9rem;
                 padding: 0.8rem 1rem;
             }
+
+            .modal-content-final {
+                max-width: 200px !important;
+                width: 50% !important;
+                padding: 1rem !important;
+            }
+
+            .modal-content-final h3 {
+                font-size: 0.9rem !important;
+            }
+
+            .modal-content-final p {
+                font-size: 0.7rem !important;
+            }
         }
     </style>
 </head>
@@ -553,25 +567,13 @@
 
     <!-- Result Modal -->
     <div id="resultModalOverlay" class="modal-overlay-cosmic">
-        <div class="modal-content-nebula">
+        <div class="modal-content-nebula modal-content-final">
             <h3 style="color: var(--accent-quantum-cyan); margin-bottom: 1rem;">分析完了</h3>
             <p style="color: var(--text-stellar-white); margin-bottom: 1.5rem;">あなた専用のレポートと2025年のトップ10株式銘柄を無料で入手！</p>
             
-            <div style="margin-bottom: 1rem;">
+            <div style="margin-bottom: 1.5rem;">
                 <button class="contact-option-button" onclick="contactViaLine()">
                     📱 LINE でレポートを受け取る
-                </button>
-            </div>
-            
-            <div style="margin-bottom: 1rem;">
-                <button class="contact-option-button" onclick="contactViaEmail()">
-                    📧 メールでレポートを受け取る
-                </button>
-            </div>
-            
-            <div style="margin-bottom: 1.5rem;">
-                <button class="contact-option-button" onclick="showContactForm()">
-                    📝 お問い合わせフォームで受け取る
                 </button>
             </div>
             
