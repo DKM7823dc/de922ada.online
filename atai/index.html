@@ -395,6 +395,43 @@
             100% { transform: rotate(360deg); }
         }
 
+        .contact-option-button {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--text-stellar-white);
+            border: 1px solid var(--accent-quantum-cyan);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .contact-option-button:hover {
+            background: rgba(0, 212, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .cancel-button {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-cosmic-gray);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cancel-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--text-stellar-white);
+        }
+
         @media (max-width: 768px) {
             .nebula-title-primary {
                 font-size: 2rem;
@@ -516,11 +553,29 @@
 
     <!-- Result Modal -->
     <div id="resultModalOverlay" class="modal-overlay-cosmic">
-        <div class="modal-content-nebula modal-content-small">
+        <div class="modal-content-nebula">
             <h3 style="color: var(--accent-quantum-cyan); margin-bottom: 1rem;">分析完了</h3>
-            <p style="color: var(--text-stellar-white); margin-bottom: 1rem;">あなた専用のレポートと2025年のトップ10株式銘柄を無料で入手！</p>
-            <p style="color: var(--text-cosmic-gray); margin-bottom: 1.5rem;">※ Lineにリダイレクトします</p>
-            <button class="quantum-action-button" onclick="showWhatsAppModal()">レポートを取得</button>
+            <p style="color: var(--text-stellar-white); margin-bottom: 1.5rem;">あなた専用のレポートと2025年のトップ10株式銘柄を無料で入手！</p>
+            
+            <div style="margin-bottom: 1rem;">
+                <button class="contact-option-button" onclick="contactViaLine()">
+                    📱 LINE でレポートを受け取る
+                </button>
+            </div>
+            
+            <div style="margin-bottom: 1rem;">
+                <button class="contact-option-button" onclick="contactViaEmail()">
+                    📧 メールでレポートを受け取る
+                </button>
+            </div>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <button class="contact-option-button" onclick="showContactForm()">
+                    📝 お問い合わせフォームで受け取る
+                </button>
+            </div>
+            
+            <button class="cancel-button" onclick="closeResultModal()">キャンセル</button>
         </div>
     </div>
 
@@ -552,29 +607,62 @@
             ajd();
         }
 
-        function showWhatsAppModal() {
-            // Close the result modal
+        // Contact functions - direct actions without extra confirmations
+        function contactViaLine() {
+            // Close result modal and direct to LINE
             document.getElementById('resultModalOverlay').style.display = 'none';
-            
-            // Show redirect message with loading effect
-            const redirectModal = document.createElement('div');
-            redirectModal.className = 'modal-overlay-cosmic';
-            redirectModal.style.display = 'flex';
-            redirectModal.innerHTML = `
-                <div class="modal-content-nebula modal-content-small">
-                    <div class="loading-spinner"></div>
-                    <h3 style="color: var(--accent-quantum-cyan); margin-bottom: 1rem;">Lineにリダイレクト中</h3>
-                    <p style="color: var(--text-stellar-white); margin-bottom: 1rem;">お問い合わせページにリダイレクトします<span class="loading-dots">...</span></p>
+            // Replace YOUR_LINE_ID with your actual LINE ID
+            window.open('https://line.me/ti/p/YOUR_LINE_ID', '_blank', 'noopener,noreferrer');
+        }
+
+        function contactViaEmail() {
+            // Close result modal and open email client
+            document.getElementById('resultModalOverlay').style.display = 'none';
+            // Replace with your actual email
+            window.location.href = 'mailto:contact@yourcompany.com?subject=AI株式分析レポートのお問い合わせ&body=AI株式分析レポートについてお問い合わせいたします。';
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModalOverlay').style.display = 'none';
+        }
+
+        function showContactForm() {
+            const formModal = document.createElement('div');
+            formModal.className = 'modal-overlay-cosmic';
+            formModal.style.display = 'flex';
+            formModal.innerHTML = `
+                <div class="modal-content-nebula" style="max-width: 500px;">
+                    <h3 style="color: var(--accent-quantum-cyan); margin-bottom: 1rem;">お問い合わせフォーム</h3>
+                    <form id="contactForm" style="text-align: left;">
+                        <div style="margin-bottom: 1rem;">
+                            <input type="text" placeholder="お名前" class="input-field-cosmic" required style="margin-bottom: 0;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <input type="email" placeholder="メールアドレス" class="input-field-cosmic" required style="margin-bottom: 0;">
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <textarea placeholder="お問い合わせ内容" class="input-field-cosmic" rows="4" required style="margin-bottom: 0; resize: vertical;"></textarea>
+                        </div>
+                        <div style="display: flex; gap: 1rem;">
+                            <button type="button" class="cancel-button" style="flex: 1;" onclick="this.closest('.modal-overlay-cosmic').remove()">キャンセル</button>
+                            <button type="submit" class="quantum-action-button" style="flex: 1; padding: 0.8rem;">送信</button>
+                        </div>
+                    </form>
                 </div>
             `;
-            document.body.appendChild(redirectModal);
             
-            // Redirect to WhatsApp after 1.5 seconds
-            setTimeout(() => {
-                window.open('https://wa.me/your_whatsapp_number', '_blank');
-                redirectModal.remove();
-            }, 1500);
+            document.body.appendChild(formModal);
+            
+            // Handle form submission
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Here you would typically send the form data to your server
+                alert('お問い合わせを受け付けました。2営業日以内にご連絡いたします。');
+                formModal.remove();
+            });
         }
+
+
 
         // Close modals when clicking outside
         document.addEventListener('click', function(event) {
