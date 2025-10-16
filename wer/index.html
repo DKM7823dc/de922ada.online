@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="css/44.css"> 
+<script>
+  function kpa() {
+            window.open('https://wa.me/your_whatsapp_number', '_blank');
+        }
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <title>AI Stock Market Analysis Assistant</title>
+    <style>
+        /* Custom modal styles for better UX */
+        .custom-alert {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .custom-alert-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .custom-alert-button {
+            background: #5D5CDE;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        
+        .custom-alert-button:hover {
+            background: #4a49c7;
+        }
+        
+        /* Dark mode support for custom alert */
+        .dark .custom-alert-content {
+            background: #2d2d2d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="quantum-financial-intelligence-platform-orchestrator">
+        <!-- AI Market Intelligence Header -->
+        <section class="quantum-neural-market-intelligence-header-orchestration">
+            <div class="quantum-algorithmic-expert-avatar-holographic-projection">
+                <img src="img/1.jpg" alt="AI Market Analyst">
+            </div>
+            <h1 class="quantum-neural-market-intelligence-primary-headline">AI Market Analysis Assistant</h1>
+            <p class="quantum-market-analysis-service-comprehensive-description">
+                Advanced industry trend reports and public company research materials to help you understand market dynamics through artificial intelligence analysis.
+            </p>
+        </section>
+
+        <!-- Stock Input Module -->
+        <section class="quantum-algorithmic-stock-input-interactive-module">
+            <input type="text" 
+                   class="quantum-stock-symbol-input-field-orchestrator" 
+                   id="stockSymbol" 
+                   placeholder="Enter stock symbol (e.g., AAPL, GOOGL, TSLA)"
+                   maxlength="10">
+            <button class="quantum-ai-analysis-trigger-hyperdimensional-button" onclick="initiateAIAnalysis()">
+                Generate AI Analysis Report
+            </button>
+        </section>
+
+        <!-- Regulatory Compliance Disclosure -->
+        <section class="quantum-regulatory-compliance-disclosure-matrix">
+            <h3 class="quantum-regulatory-risk-warning-hyperdimensional-header">⚠️ Important Risk Disclosure</h3>
+            <ul>
+                <li class="quantum-compliance-risk-disclosure-comprehensive-item">This service provides general market information only and does not constitute any investment advice or recommendations.</li>
+                <li class="quantum-compliance-risk-disclosure-comprehensive-item">Financial markets involve risks, and you may lose some or all of your investment capital.</li>
+                <li class="quantum-compliance-risk-disclosure-comprehensive-item">All examples shown are historical data analysis and do not constitute any guarantee of future returns.</li>
+                <li class="quantum-compliance-risk-disclosure-comprehensive-item">Investors should make prudent decisions based on their own risk tolerance.</li>
+                <li class="quantum-compliance-risk-disclosure-comprehensive-item">All information is objective factual statements and does not constitute investment advice.</li>
+                <li class="quantum-compliance-risk-disclosure-comprehensive-item">AI analysis tools only provide probability calculations based on historical data and algorithmic models, and do not constitute any form of investment advice.</li>
+                <li class="quantum-compliance-risk-disclosure-comprehensive-item">Past performance does not represent future performance, and actual returns may be lower or higher than AI predictions.</li>
+            </ul>
+            
+            <div class="quantum-legal-documentation-footer-navigation-matrix">
+                <a href="privacy.html" class="quantum-footer-legal-agreement-hyperdimensional-link">Privacy Policy</a>
+                <a href="terms.html" class="quantum-footer-legal-agreement-hyperdimensional-link">Terms of Service</a>
+            </div>
+        </section>
+
+        <!-- AI Processing Modal -->
+        <div class="quantum-modal-overlay-hyperdimensional-backdrop" id="processingModal">
+            <div class="quantum-ai-processing-modal-orchestration-container">
+                <button class="quantum-modal-close-hyperdimensional-trigger" onclick="closeModal()">&times;</button>
+                <div class="quantum-circular-progress-visualization-container">
+                    <div class="quantum-circular-progress-visualization-ring"></div>
+                    <div class="quantum-progress-percentage-indicator-display" id="progressText">0%</div>
+                </div>
+                <div class="quantum-ai-analysis-status-orchestration-text">
+                    AI system is analyzing:<br>
+                    • Market Analysis<br>
+                    • Latest News Analysis<br>
+                    • Historical Data Analysis
+                </div>
+            </div>
+        </div>
+
+        <!-- Report Completion Modal -->
+        <div class="quantum-modal-overlay-hyperdimensional-backdrop" id="completionModal">
+            <div class="quantum-report-completion-notification-modal">
+                <button class="quantum-modal-close-hyperdimensional-trigger" onclick="closeModal()">&times;</button>
+                <h2 class="quantum-report-completion-primary-headline">Your Stock Analysis Report is Complete</h2>
+                <p class="quantum-ai-analysis-status-orchestration-text">
+                    Please click the link below to receive your comprehensive AI-generated analysis report.
+                </p>
+                <button class="quantum-whatsapp-connection-trigger-hyperdimensional" onclick="kpa()">
+                    Receive Report via WhatsApp
+                </button>
+            </div>
+        </div>
+
+        <!-- Custom Alert Modal -->
+        <div class="custom-alert" id="customAlert">
+            <div class="custom-alert-content">
+                <p id="alertMessage"></p>
+                <button class="custom-alert-button" onclick="closeCustomAlert()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let progressInterval;
+
+        function showCustomAlert(message) {
+            document.getElementById('alertMessage').textContent = message;
+            document.getElementById('customAlert').style.display = 'flex';
+        }
+
+        function closeCustomAlert() {
+            document.getElementById('customAlert').style.display = 'none';
+        }
+
+        function initiateAIAnalysis() {
+            const stockSymbol = document.getElementById('stockSymbol').value.trim();
+            if (!stockSymbol) {
+                showCustomAlert('Please enter a stock symbol');
+                return;
+            }
+            
+            // Show processing modal
+            document.getElementById('processingModal').style.display = 'flex';
+            
+            // Start progress animation
+            startProgressAnimation();
+            
+            // Auto close processing modal and show completion modal after 2 seconds
+            setTimeout(() => {
+                document.getElementById('processingModal').style.display = 'none';
+                document.getElementById('completionModal').style.display = 'flex';
+                clearInterval(progressInterval);
+            }, 2000);
+        }
+
+        function startProgressAnimation() {
+            let progress = 0;
+            const progressText = document.getElementById('progressText');
+            progressText.textContent = '0%';
+            
+            // Update progress every 20ms for smooth animation
+            progressInterval = setInterval(() => {
+                progress += 1;
+                progressText.textContent = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                }
+            }, 20); // 2000ms / 100 steps = 20ms per step
+        }
+
+        function closeModal() {
+            document.getElementById('processingModal').style.display = 'none';
+            document.getElementById('completionModal').style.display = 'none';
+            if (progressInterval) {
+                clearInterval(progressInterval);
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const processingModal = document.getElementById('processingModal');
+            const completionModal = document.getElementById('completionModal');
+            const customAlert = document.getElementById('customAlert');
+            
+            if (event.target === processingModal) {
+                processingModal.style.display = 'none';
+                if (progressInterval) {
+                    clearInterval(progressInterval);
+                }
+            }
+            if (event.target === completionModal) {
+                completionModal.style.display = 'none';
+            }
+            if (event.target === customAlert) {
+                customAlert.style.display = 'none';
+            }
+        }
+
+        // Dark mode compatibility
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+</body>
+</html>

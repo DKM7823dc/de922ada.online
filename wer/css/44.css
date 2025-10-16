@@ -1,0 +1,387 @@
+  * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .quantum-financial-intelligence-platform-orchestrator {
+            font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+            background: #0a0a0f;
+            min-height: 100vh;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .quantum-financial-intelligence-platform-orchestrator::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 255, 157, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+            z-index: 1;
+        }
+
+        .quantum-financial-intelligence-platform-orchestrator::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 157, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 157, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .quantum-neural-market-intelligence-header-orchestration {
+            padding: 50px 25px 40px;
+            text-align: center;
+            position: relative;
+            z-index: 3;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%);
+            border-bottom: 2px solid rgba(0, 255, 157, 0.3);
+        }
+
+        .quantum-algorithmic-expert-avatar-holographic-projection {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            overflow: hidden;
+            border: 3px solid #00ff9d;
+            box-shadow: 
+                0 0 0 6px rgba(0, 255, 157, 0.2),
+                0 0 30px rgba(0, 255, 157, 0.4),
+                inset 0 0 20px rgba(147, 51, 234, 0.1);
+            position: relative;
+        }
+
+        .quantum-algorithmic-expert-avatar-holographic-projection::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00ff9d, #9333ea, #3b82f6, #00ff9d);
+            z-index: -1;
+            animation: quantum-border-rotation 4s linear infinite;
+        }
+
+        @keyframes quantum-border-rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .quantum-algorithmic-expert-avatar-holographic-projection img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .quantum-neural-market-intelligence-primary-headline {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00ff9d, #9333ea, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 255, 157, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .quantum-market-analysis-service-comprehensive-description {
+            font-size: 18px;
+            color: #a1a1aa;
+            margin-bottom: 40px;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quantum-algorithmic-stock-input-interactive-module {
+            padding: 40px 25px;
+            position: relative;
+            z-index: 3;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(10px);
+            margin: 30px 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 157, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .quantum-stock-symbol-input-field-orchestrator {
+            width: 100%;
+            padding: 20px 25px;
+            font-size: 18px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid rgba(0, 255, 157, 0.3);
+            border-radius: 15px;
+            color: #ffffff;
+            outline: none;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .quantum-stock-symbol-input-field-orchestrator::placeholder {
+            color: #71717a;
+        }
+
+        .quantum-stock-symbol-input-field-orchestrator:focus {
+            border-color: #00ff9d;
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+            background: rgba(16, 185, 129, 0.15);
+        }
+
+        .quantum-ai-analysis-trigger-hyperdimensional-button {
+            width: 100%;
+            padding: 20px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00ff9d 0%, #9333ea 50%, #3b82f6 100%);
+            border: none;
+            border-radius: 15px;
+            color: #0a0a0f;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            animation: quantum-button-energy-pulse 3s ease-in-out infinite;
+        }
+
+        .quantum-ai-analysis-trigger-hyperdimensional-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .quantum-ai-analysis-trigger-hyperdimensional-button:hover::before {
+            left: 100%;
+        }
+
+        .quantum-ai-analysis-trigger-hyperdimensional-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 255, 157, 0.4);
+        }
+
+        @keyframes quantum-button-energy-pulse {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(147, 51, 234, 0.5);
+            }
+        }
+
+        .quantum-regulatory-compliance-disclosure-matrix {
+            padding: 40px 25px;
+            position: relative;
+            z-index: 3;
+            background: linear-gradient(135deg, rgba(10, 10, 15, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
+            margin: 30px 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(147, 51, 234, 0.3);
+        }
+
+        .quantum-regulatory-risk-warning-hyperdimensional-header {
+            font-size: 24px;
+            color: #fbbf24;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .quantum-compliance-risk-disclosure-comprehensive-item {
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #d1d5db;
+            line-height: 1.6;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .quantum-compliance-risk-disclosure-comprehensive-item::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            color: #00ff9d;
+            font-weight: bold;
+        }
+
+        .quantum-legal-documentation-footer-navigation-matrix {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(0, 255, 157, 0.2);
+        }
+
+        .quantum-footer-legal-agreement-hyperdimensional-link {
+            color: #00ff9d;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .quantum-footer-legal-agreement-hyperdimensional-link:hover {
+            color: #9333ea;
+            text-shadow: 0 0 10px rgba(147, 51, 234, 0.5);
+        }
+
+        .quantum-modal-overlay-hyperdimensional-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantum-ai-processing-modal-orchestration-container {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #00ff9d;
+            text-align: center;
+            position: relative;
+            max-width: 400px;
+            box-shadow: 0 20px 60px rgba(0, 255, 157, 0.3);
+        }
+
+        .quantum-modal-close-hyperdimensional-trigger {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #00ff9d;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quantum-modal-close-hyperdimensional-trigger:hover {
+            color: #9333ea;
+            transform: scale(1.2);
+        }
+
+        .quantum-circular-progress-visualization-container {
+            width: 120px;
+            height: 120px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .quantum-circular-progress-visualization-ring {
+            width: 120px;
+            height: 120px;
+            border: 4px solid rgba(0, 255, 157, 0.2);
+            border-top: 4px solid #00ff9d;
+            border-radius: 50%;
+            animation: quantum-progress-rotation 2s linear;
+        }
+
+        @keyframes quantum-progress-rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .quantum-progress-percentage-indicator-display {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ff9d;
+        }
+
+        .quantum-ai-analysis-status-orchestration-text {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #a1a1aa;
+            line-height: 1.5;
+        }
+
+        .quantum-report-completion-notification-modal {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #9333ea;
+            text-align: center;
+            position: relative;
+            max-width: 450px;
+            box-shadow: 0 20px 60px rgba(147, 51, 234, 0.3);
+        }
+
+        .quantum-report-completion-primary-headline {
+            font-size: 24px;
+            color: #00ff9d;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .quantum-whatsapp-connection-trigger-hyperdimensional {
+            background: linear-gradient(135deg, #9333ea 0%, #00ff9d 100%);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            color: #0a0a0f;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .quantum-whatsapp-connection-trigger-hyperdimensional:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .quantum-financial-intelligence-platform-orchestrator {
+                font-size: 14px;
+            }
+            
+            .quantum-neural-market-intelligence-primary-headline {
+                font-size: 28px;
+            }
+            
+            .quantum-algorithmic-stock-input-interactive-module {
+                margin: 20px 15px;
+                padding: 30px 20px;
+            }
+            
+            .quantum-regulatory-compliance-disclosure-matrix {
+                margin: 20px 15px;
+                padding: 30px 20px;
+            }
+        }
