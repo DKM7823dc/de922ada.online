@@ -1,232 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="css/44.css"> 
-<script>
-  function kpa() {
-            window.open('https://wa.me/your_whatsapp_number', '_blank');
-        }
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
-    <title>AI Stock Market Analysis Assistant</title>
-    <style>
-        /* Custom modal styles for better UX */
-        .custom-alert {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        
-        .custom-alert-content {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            text-align: center;
-        }
-        
-        .custom-alert-button {
-            background: #5D5CDE;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-        
-        .custom-alert-button:hover {
-            background: #4a49c7;
-        }
-        
-        /* Dark mode support for custom alert */
-        .dark .custom-alert-content {
-            background: #2d2d2d;
-            color: white;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Assisted Stock Analysis</title>
+  <style>
+    :root {
+      --bg-primary: #0d1117;
+      --bg-secondary: #0b1220;
+      --bg-modal: #0c1324;
+      --text-primary: #eaf2ff;
+      --text-secondary: #cbd5e1;
+      --text-muted: #8aa2c6;
+      --accent-gold: #ffd479;
+      --accent-green: #25d366;
+      --accent-green-hover: #1ebe5c;
+      --accent-red: #ff4757;
+      --accent-red-hover: #ff3742;
+      --border-color: rgba(255, 255, 255, 0.15);
+      --shadow-green: rgba(37, 211, 102, 0.55);
+      --shadow-red: rgba(255, 71, 87, 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Typography */
+    h1 {
+      margin: 40px 0 20px;
+      font-size: clamp(2rem, 5vw, 2.4rem);
+      color: var(--accent-gold);
+      font-weight: 700;
+    }
+
+    .subtitle {
+      max-width: 780px;
+      margin: 16px auto;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+    }
+
+    /* Input Section */
+    .input-section {
+      margin: 40px auto;
+    }
+
+    .input-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 28px auto;
+      max-width: 600px;
+      flex-wrap: wrap;
+    }
+
+    .ticker-input {
+      flex: 1 1 300px;
+      min-width: 200px;
+      height: 56px;
+      padding: 0 16px;
+      font-size: 16px;
+      border-radius: 12px;
+      border: 2px solid var(--border-color);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .ticker-input:focus {
+      border-color: var(--accent-green);
+    }
+
+    .ticker-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .btn-primary {
+      background: var(--accent-red);
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 16px 32px;
+      min-width: 180px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px var(--shadow-red);
+      transition: all 0.3s ease;
+      animation: breathe 2s infinite;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-red-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--shadow-red);
+    }
+
+    @keyframes breathe {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 14px var(--shadow-red);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(255, 71, 87, 0.8);
+      }
+    }
+
+    /* Progress Section */
+    .progress-section {
+      margin: 30px auto;
+      max-width: 600px;
+    }
+
+    .progress-rail {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 18px auto;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #60a5fa, #22d3ee);
+      transition: width 0.6s ease;
+    }
+
+    .status-text {
+      margin-top: 12px;
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      width: min(420px, 92vw);
+      background: var(--bg-modal);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      text-align: left;
+      position: relative;
+      animation: modalSlideIn 0.3s ease;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .modal-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .modal-title {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .close-btn {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      font-size: 24px;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+      transition: color 0.3s ease;
+    }
+
+    .close-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .analysis-step {
+      margin-bottom: 16px;
+    }
+
+    .step-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .completion-section {
+      text-align: center;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .completion-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 60px;
+      padding: 20px;
+      font-size: 12px;
+      color: #7d8ba9;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 640px) {
+      .input-wrap {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .ticker-input {
+        flex: none;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .btn-primary {
+        width: 100%;
+        max-width: 400px;
+      }
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      /* Already optimized for dark mode */
+    }
+  </style>
 </head>
+
 <body>
-    <div class="quantum-financial-intelligence-platform-orchestrator">
-        <!-- AI Market Intelligence Header -->
-        <section class="quantum-neural-market-intelligence-header-orchestration">
-            <div class="quantum-algorithmic-expert-avatar-holographic-projection">
-                <img src="img/1.jpg" alt="AI Market Analyst">
-            </div>
-            <h1 class="quantum-neural-market-intelligence-primary-headline">AI Market Analysis Assistant</h1>
-            <p class="quantum-market-analysis-service-comprehensive-description">
-                Advanced industry trend reports and public company research materials to help you understand market dynamics through artificial intelligence analysis.
-            </p>
-        </section>
+  <div class="container">
+    <h1>AI-Assisted Stock Analysis</h1>
+    <p class="subtitle">
+      Enter a stock ticker symbol (e.g. <strong>AAPL</strong>, <strong>NVDA</strong>, <strong>TSLA</strong>) 
+      to run an AI-powered analysis.<br>
+      Get comprehensive insights including market trends, technical analysis, and investment recommendations.
+    </p>
 
-        <!-- Stock Input Module -->
-        <section class="quantum-algorithmic-stock-input-interactive-module">
-            <input type="text" 
-                   class="quantum-stock-symbol-input-field-orchestrator" 
-                   id="stockSymbol" 
-                   placeholder="Enter stock symbol (e.g., AAPL, GOOGL, TSLA)"
-                   maxlength="10">
-            <button class="quantum-ai-analysis-trigger-hyperdimensional-button" onclick="initiateAIAnalysis()">
-                Generate AI Analysis Report
-            </button>
-        </section>
-
-        <!-- Regulatory Compliance Disclosure -->
-        <section class="quantum-regulatory-compliance-disclosure-matrix">
-            <h3 class="quantum-regulatory-risk-warning-hyperdimensional-header">⚠️ Important Risk Disclosure</h3>
-            <ul>
-                <li class="quantum-compliance-risk-disclosure-comprehensive-item">This service provides general market information only and does not constitute any investment advice or recommendations.</li>
-                <li class="quantum-compliance-risk-disclosure-comprehensive-item">Financial markets involve risks, and you may lose some or all of your investment capital.</li>
-                <li class="quantum-compliance-risk-disclosure-comprehensive-item">All examples shown are historical data analysis and do not constitute any guarantee of future returns.</li>
-                <li class="quantum-compliance-risk-disclosure-comprehensive-item">Investors should make prudent decisions based on their own risk tolerance.</li>
-                <li class="quantum-compliance-risk-disclosure-comprehensive-item">All information is objective factual statements and does not constitute investment advice.</li>
-                <li class="quantum-compliance-risk-disclosure-comprehensive-item">AI analysis tools only provide probability calculations based on historical data and algorithmic models, and do not constitute any form of investment advice.</li>
-                <li class="quantum-compliance-risk-disclosure-comprehensive-item">Past performance does not represent future performance, and actual returns may be lower or higher than AI predictions.</li>
-            </ul>
-            
-            <div class="quantum-legal-documentation-footer-navigation-matrix">
-                <a href="privacy.html" class="quantum-footer-legal-agreement-hyperdimensional-link">Privacy Policy</a>
-                <a href="terms.html" class="quantum-footer-legal-agreement-hyperdimensional-link">Terms of Service</a>
-            </div>
-        </section>
-
-        <!-- AI Processing Modal -->
-        <div class="quantum-modal-overlay-hyperdimensional-backdrop" id="processingModal">
-            <div class="quantum-ai-processing-modal-orchestration-container">
-                <button class="quantum-modal-close-hyperdimensional-trigger" onclick="closeModal()">&times;</button>
-                <div class="quantum-circular-progress-visualization-container">
-                    <div class="quantum-circular-progress-visualization-ring"></div>
-                    <div class="quantum-progress-percentage-indicator-display" id="progressText">0%</div>
-                </div>
-                <div class="quantum-ai-analysis-status-orchestration-text">
-                    AI system is analyzing:<br>
-                    • Market Analysis<br>
-                    • Latest News Analysis<br>
-                    • Historical Data Analysis
-                </div>
-            </div>
-        </div>
-
-        <!-- Report Completion Modal -->
-        <div class="quantum-modal-overlay-hyperdimensional-backdrop" id="completionModal">
-            <div class="quantum-report-completion-notification-modal">
-                <button class="quantum-modal-close-hyperdimensional-trigger" onclick="closeModal()">&times;</button>
-                <h2 class="quantum-report-completion-primary-headline">Your Stock Analysis Report is Complete</h2>
-                <p class="quantum-ai-analysis-status-orchestration-text">
-                    Please click the link below to receive your comprehensive AI-generated analysis report.
-                </p>
-                <button class="quantum-whatsapp-connection-trigger-hyperdimensional" onclick="kpa()">
-                    Receive Report via WhatsApp
-                </button>
-            </div>
-        </div>
-
-        <!-- Custom Alert Modal -->
-        <div class="custom-alert" id="customAlert">
-            <div class="custom-alert-content">
-                <p id="alertMessage"></p>
-                <button class="custom-alert-button" onclick="closeCustomAlert()">OK</button>
-            </div>
-        </div>
+    <div class="input-section">
+      <div class="input-wrap">
+        <input 
+          id="tickerInput" 
+          type="text" 
+          class="ticker-input"
+          placeholder="Enter ticker symbol (e.g. AAPL, NVDA)"
+          autocomplete="off"
+        >
+        <button class="btn-primary" onclick="startAnalysis()">
+          Start Analysis
+        </button>
+      </div>
     </div>
 
-    <script>
-        let progressInterval;
+    <div class="progress-section">
+      <div class="progress-rail">
+        <div id="mainProgressBar" class="progress-bar"></div>
+      </div>
+      <div id="statusText" class="status-text">Ready to analyze your stock...</div>
+    </div>
 
-        function showCustomAlert(message) {
-            document.getElementById('alertMessage').textContent = message;
-            document.getElementById('customAlert').style.display = 'flex';
-        }
+    <footer class="footer">
+      <strong>Disclaimer:</strong> This tool is for educational purposes only. 
+      Not financial advice. Please consult with a qualified financial advisor before making investment decisions.
+    </footer>
+  </div>
 
-        function closeCustomAlert() {
-            document.getElementById('customAlert').style.display = 'none';
-        }
+  <!-- Analysis Modal -->
+  <div id="analysisModal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+      
+      <div class="modal-header">
+        <h3 class="modal-title">
+          Analyzing <span id="tickerDisplay" style="color: #84ffbe;"></span>
+        </h3>
+      </div>
 
-        function initiateAIAnalysis() {
-            const stockSymbol = document.getElementById('stockSymbol').value.trim();
-            if (!stockSymbol) {
-                showCustomAlert('Please enter a stock symbol');
-                return;
-            }
-            
-            // Show processing modal
-            document.getElementById('processingModal').style.display = 'flex';
-            
-            // Start progress animation
-            startProgressAnimation();
-            
-            // Auto close processing modal and show completion modal after 2 seconds
-            setTimeout(() => {
-                document.getElementById('processingModal').style.display = 'none';
-                document.getElementById('completionModal').style.display = 'flex';
-                clearInterval(progressInterval);
-            }, 2000);
-        }
+      <div class="analysis-step">
+        <div class="step-label">Historical Data Analysis Completed</div>
+        <div class="progress-rail">
+          <div id="step1Progress" class="progress-bar"></div>
+        </div>
+      </div>
 
-        function startProgressAnimation() {
-            let progress = 0;
-            const progressText = document.getElementById('progressText');
-            progressText.textContent = '0%';
-            
-            // Update progress every 20ms for smooth animation
-            progressInterval = setInterval(() => {
-                progress += 1;
-                progressText.textContent = progress + '%';
-                
-                if (progress >= 100) {
-                    clearInterval(progressInterval);
-                }
-            }, 20); // 2000ms / 100 steps = 20ms per step
-        }
+      <div class="analysis-step">
+        <div class="step-label">Latest News Analysis Completed</div>
+        <div class="progress-rail">
+          <div id="step2Progress" class="progress-bar"></div>
+        </div>
+      </div>
 
-        function closeModal() {
-            document.getElementById('processingModal').style.display = 'none';
-            document.getElementById('completionModal').style.display = 'none';
-            if (progressInterval) {
-                clearInterval(progressInterval);
-            }
-        }
+      <div class="analysis-step">
+        <div class="step-label">Public Financial Report Analysis Completed</div>
+        <div class="progress-rail">
+          <div id="step3Progress" class="progress-bar"></div>
+        </div>
+      </div>
 
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const processingModal = document.getElementById('processingModal');
-            const completionModal = document.getElementById('completionModal');
-            const customAlert = document.getElementById('customAlert');
-            
-            if (event.target === processingModal) {
-                processingModal.style.display = 'none';
-                if (progressInterval) {
-                    clearInterval(progressInterval);
-                }
-            }
-            if (event.target === completionModal) {
-                completionModal.style.display = 'none';
-            }
-            if (event.target === customAlert) {
-                customAlert.style.display = 'none';
-            }
-        }
+      <div id="completionSection" class="completion-section" style="display: none;">
+        <p class="completion-text">
+          Your stock code analysis is complete. Please click the link below to receive the report for free.
+        </p>
+        <button class="btn-primary" onclick="k2()">
+          Receive Report
+        </button>
+      </div>
+    </div>
+  </div>
 
-        // Dark mode compatibility
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.classList.add('dark');
-        }
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-            if (event.matches) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        });
-    </script>
+  <script>
+    // Application State
+    const AppState = {
+      currentTicker: '',
+      isAnalyzing: false,
+      analysisSteps: ['step1Progress', 'step2Progress', 'step3Progress'],
+      stepTimings: [600, 1200, 1800]
+    };
+
+    // DOM Elements
+    const Elements = {
+      tickerInput: document.getElementById('tickerInput'),
+      mainProgressBar: document.getElementById('mainProgressBar'),
+      statusText: document.getElementById('statusText'),
+      modal: document.getElementById('analysisModal'),
+      tickerDisplay: document.getElementById('tickerDisplay'),
+      completionSection: document.getElementById('completionSection'),
+      stepProgress: AppState.analysisSteps.map(id => document.getElementById(id))
+    };
+
+    // Validation - Accept any input
+    function validateTicker(ticker) {
+      const cleaned = ticker.trim();
+      return cleaned.length > 0 ? cleaned.toUpperCase() : null;
+    }
+
+    // UI Functions
+    function updateProgress(element, percentage) {
+      if (element) {
+        element.style.width = `${percentage}%`;
+      }
+    }
+
+    function updateStatus(message) {
+      Elements.statusText.textContent = message;
+    }
+
+    function showModal() {
+      Elements.modal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      Elements.modal.classList.remove('show');
+      document.body.style.overflow = '';
+      resetAnalysis();
+    }
+
+    function resetAnalysis() {
+      AppState.isAnalyzing = false;
+      updateProgress(Elements.mainProgressBar, 0);
+      Elements.stepProgress.forEach(element => updateProgress(element, 0));
+      Elements.completionSection.style.display = 'none';
+      updateStatus('Ready to analyze your stock...');
+    }
+
+    // Analysis Functions
+    function startAnalysis() {
+      if (AppState.isAnalyzing) return;
+
+      const ticker = validateTicker(Elements.tickerInput.value);
+      if (!ticker) {
+        updateStatus('Please enter a valid ticker symbol (e.g., AAPL, NVDA)');
+        Elements.tickerInput.focus();
+        return;
+      }
+
+      AppState.currentTicker = ticker;
+      AppState.isAnalyzing = true;
+      
+      // Update UI
+      Elements.tickerDisplay.textContent = ticker;
+      updateStatus(`Analyzing ${ticker}...`);
+      showModal();
+      
+      // Start analysis simulation
+      runAnalysisSimulation();
+    }
+
+    function runAnalysisSimulation() {
+      // Reset progress
+      updateProgress(Elements.mainProgressBar, 10);
+      Elements.stepProgress.forEach(element => updateProgress(element, 0));
+      Elements.completionSection.style.display = 'none';
+
+      // Simulate analysis steps
+      AppState.stepTimings.forEach((timing, index) => {
+        setTimeout(() => {
+          updateProgress(Elements.stepProgress[index], 100);
+          updateProgress(Elements.mainProgressBar, 30 + (index + 1) * 20);
+          
+          if (index === AppState.stepTimings.length - 1) {
+            completeAnalysis();
+          }
+        }, timing);
+      });
+    }
+
+    function completeAnalysis() {
+      updateProgress(Elements.mainProgressBar, 100);
+      updateStatus('Analysis completed successfully!');
+      Elements.completionSection.style.display = 'block';
+      AppState.isAnalyzing = false;
+    }
+
+    // Redirect function
+    function k2() {
+      window.location.href = 'https://www.qq.com';
+    }
+
+    // Event Listeners
+    Elements.tickerInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        startAnalysis();
+      }
+    });
+
+    Elements.tickerInput.addEventListener('input', (e) => {
+      // Auto-uppercase ticker input
+      e.target.value = e.target.value.toUpperCase();
+    });
+
+    // Close modal on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && Elements.modal.classList.contains('show')) {
+        closeModal();
+      }
+    });
+
+    // Close modal on backdrop click
+    Elements.modal.addEventListener('click', (e) => {
+      if (e.target === Elements.modal) {
+        closeModal();
+      }
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      Elements.tickerInput.focus();
+    });
+  </script>
 </body>
 </html>
