@@ -142,6 +142,96 @@
             10%, 30%, 50%, 70%, 90% { transform: rotate(-5deg); }
             20%, 40%, 60%, 80% { transform: rotate(5deg); }
         }
+
+        /* Navigation Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 2000;
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(151, 188, 98, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-bottom-color: rgba(151, 188, 98, 0.4);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #97BC62, #D4A574);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #97BC62 !important;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            max-height: 500px;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        /* Hamburger Menu Animation */
+        .hamburger {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #97BC62;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
     </style>
 
     <script>
@@ -165,6 +255,61 @@
             // For example, redirect to WhatsApp group or sign-up page
             window.open('https://www.example.com/join', '_blank');
         }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.getElementById('hamburger');
+            mobileMenu.classList.toggle('open');
+            hamburger.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking a link
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.getElementById('hamburger');
+            mobileMenu.classList.remove('open');
+            hamburger.classList.remove('active');
+        }
+
+        // Initialize navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Active section highlighting
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            function highlightNavigation() {
+                const scrollY = window.pageYOffset;
+
+                sections.forEach(section => {
+                    const sectionHeight = section.offsetHeight;
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionId = section.getAttribute('id');
+
+                    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', highlightNavigation);
+            highlightNavigation(); // Initial call
+        });
     </script>
 </head>
 
@@ -172,8 +317,55 @@
     <!-- Initialize dark mode on page load -->
     <script>initDarkMode();</script>
 
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="navbar">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo/Brand -->
+                <a href="#home" class="text-xl md:text-2xl font-bold text-white hover:text-secondary transition-colors">
+                    📊 Smart Financial Education
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-white hover:text-secondary text-sm lg:text-base">Home</a>
+                    <a href="#challenges" class="nav-link text-white hover:text-secondary text-sm lg:text-base">Challenges</a>
+                    <a href="#modules" class="nav-link text-white hover:text-secondary text-sm lg:text-base">What We Offer</a>
+                    <a href="#why-us" class="nav-link text-white hover:text-secondary text-sm lg:text-base">Why Us</a>
+                    <a href="#about" class="nav-link text-white hover:text-secondary text-sm lg:text-base">About</a>
+                    <button onclick="joinCommunity()" class="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-2 rounded-lg transition-colors">
+                        Join Now
+                    </button>
+                </div>
+
+                <!-- Mobile Hamburger -->
+                <div class="md:hidden">
+                    <div id="hamburger" class="hamburger" onclick="toggleMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="mobile-menu md:hidden">
+                <div class="flex flex-col space-y-4 pt-4 pb-2">
+                    <a href="#home" onclick="closeMobileMenu()" class="nav-link text-white hover:text-secondary text-base">Home</a>
+                    <a href="#challenges" onclick="closeMobileMenu()" class="nav-link text-white hover:text-secondary text-base">Challenges</a>
+                    <a href="#modules" onclick="closeMobileMenu()" class="nav-link text-white hover:text-secondary text-base">What We Offer</a>
+                    <a href="#why-us" onclick="closeMobileMenu()" class="nav-link text-white hover:text-secondary text-base">Why Us</a>
+                    <a href="#about" onclick="closeMobileMenu()" class="nav-link text-white hover:text-secondary text-base">About</a>
+                    <button onclick="joinCommunity(); closeMobileMenu();" class="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-2 rounded-lg transition-colors w-full">
+                        Join Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
-    <section class="space-bg text-white py-20 px-4 relative">
+    <section id="home" class="space-bg text-white py-20 px-4 relative" style="padding-top: 120px;">
         <div class="max-w-7xl mx-auto text-center relative z-10">
             <header>
                 <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight text-white">
@@ -216,7 +408,7 @@
     </section>
 
     <!-- Pain Points Section -->
-    <section class="py-20 px-2 sm:px-4 cosmic-gradient">
+    <section id="challenges" class="py-20 px-2 sm:px-4 cosmic-gradient">
         <div class="max-w-7xl mx-auto">
             <header class="text-center mb-12 md:mb-16 px-2">
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-white leading-tight">
@@ -317,7 +509,7 @@
     </section>
 
     <!-- What We Provide Section -->
-    <section class="py-20 px-2 sm:px-4 space-bg relative">
+    <section id="modules" class="py-20 px-2 sm:px-4 space-bg relative">
         <div class="max-w-7xl mx-auto relative z-10">
             <header class="text-center mb-12 md:mb-16 px-2">
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-white leading-tight">
@@ -401,7 +593,7 @@
     </section>
 
     <!-- Why Choose Us Section -->
-    <section class="py-20 px-4 cosmic-gradient">
+    <section id="why-us" class="py-20 px-4 cosmic-gradient">
         <div class="max-w-6xl mx-auto">
             <header class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">
@@ -472,7 +664,7 @@
     </section>
 
     <!-- About Us Section -->
-    <section class="py-20 px-4 space-bg relative">
+    <section id="about" class="py-20 px-4 space-bg relative">
         <div class="max-w-6xl mx-auto relative z-10">
             <header class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">
@@ -643,7 +835,8 @@
 
     <!-- Floating Action Button -->
     <div class="floating-btn">
-       
+        <!-- Risk Disclosure for Floating Button -->
+        
         <button onclick="joinCommunity()" class="bg-primary text-white font-bold text-lg px-6 py-3 rounded-full shadow-lg hover:bg-primary-dark transition-colors block w-full"
                 aria-label="Join Educational Community">
             <span class="hidden sm:inline">🎓 JOIN EDUCATIONAL COMMUNITY</span>
