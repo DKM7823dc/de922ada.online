@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>賢い投資家への道 - 財経ニュース解読術</title>
 
+
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -22,6 +23,7 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1401982154923235&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+
 
     <script>
        function k2() {
@@ -396,6 +398,48 @@ src="https://www.facebook.com/tr?id=1401982154923235&ev=PageView&noscript=1"
         .btn-finance:hover {
             animation: none;
         }
+
+        /* Modal animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        .animate-fadeOut {
+            animation: fadeOut 0.3s ease-out forwards;
+        }
+
+        .animate-scaleIn {
+            animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
     </style>
 </head>
 <body>
@@ -451,7 +495,7 @@ src="https://www.facebook.com/tr?id=1401982154923235&ev=PageView&noscript=1"
                         <div class="grid md:grid-cols-2 gap-6">
                             <div class="feature-finance p-6 rounded-lg">
                                 <div class="text-bull font-mono text-sm mb-2">PRIMARY FOCUS</div>
-                                <p class="text-gray-300 leading-relaxed">全球株式投資を専門とし、特に<strong class="text-white">米国成熟市場</strong>と<strong class="text-white">アジア太平洋市場</strong>に深い知見を持つ</p>
+                                <p class="text-gray-300 leading-relaxed">���球株式投資を専門とし、特に<strong class="text-white">米国成熟市場</strong>と<strong class="text-white">アジア太平洋市場</strong>に深い知見を持つ</p>
                             </div>
                             <div class="feature-finance p-6 rounded-lg">
                                 <div class="text-bull font-mono text-sm mb-2">INVESTMENT STYLE</div>
@@ -459,7 +503,7 @@ src="https://www.facebook.com/tr?id=1401982154923235&ev=PageView&noscript=1"
                             </div>
                             <div class="feature-finance p-6 rounded-lg">
                                 <div class="text-bull font-mono text-sm mb-2">REGIONAL EXPERTISE</div>
-                                <p class="text-gray-300 leading-relaxed">日米両市場での豊富な実務経験を活���し、クロスボーダー投資戦略を展開</p>
+                                <p class="text-gray-300 leading-relaxed">日米両市場での豊富な実務経験を活かし、クロスボーダー投資戦略を展開</p>
                             </div>
                             <div class="feature-finance p-6 rounded-lg">
                                 <div class="text-bull font-mono text-sm mb-2">MARKET ANALYSIS</div>
@@ -582,7 +626,7 @@ src="https://www.facebook.com/tr?id=1401982154923235&ev=PageView&noscript=1"
                     </div>
                     <div class="card-finance p-8 rounded-lg fade-in">
                         <p class="text-lg leading-relaxed text-gray-300">
-                            企業の「業績予想超え」なのに株価が下落し、理解できない？
+                            企業の「業績予想超え」なのに���価が下落し、理解できない？
                         </p>
                     </div>
                     <div class="card-finance p-8 rounded-lg fade-in">
@@ -748,12 +792,59 @@ src="https://www.facebook.com/tr?id=1401982154923235&ev=PageView&noscript=1"
             });
         }, observerOptions);
 
-        // Initialize scroll animations on page load
+        // Show welcome modal on page load
+        function showWelcomeModal() {
+            const modal = document.createElement('div');
+            modal.id = 'welcomeModal';
+            modal.className = 'fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 animate-fadeIn';
+            modal.innerHTML = `
+                <div class="bg-finance-navy border-2 border-gold-primary rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl animate-scaleIn">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-gold-primary to-gold-light rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-10 h-10 text-finance-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">ようこそ！</h3>
+                    </div>
+                    <div class="bg-finance-blue rounded-lg p-6 mb-6 border border-gold-primary border-opacity-30">
+                        <p class="text-gray-200 text-lg leading-relaxed text-center">
+                            「<span class="text-bull font-bold text-xl">777</span>」と返信すると、優良銘<br>
+                            柄の情報をお届けします。たく<br>
+                            さんコミュニケーションを取る<br>
+                            ことで、予想外の収穫があるか<br>
+                            もしれません
+                        </p>
+                    </div>
+                    <button onclick="closeWelcomeModal(); k2();" class="btn-finance w-full py-4 rounded-lg text-xl font-bold transform hover:scale-105 transition-all duration-300">
+                        優良銘柄を受け取る
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function closeWelcomeModal() {
+            const modal = document.getElementById('welcomeModal');
+            if (modal) {
+                modal.classList.add('animate-fadeOut');
+                setTimeout(() => {
+                    modal.remove();
+                }, 300);
+            }
+        }
+
+        // Initialize scroll animations and show modal on page load
         document.addEventListener('DOMContentLoaded', () => {
             const animatedElements = document.querySelectorAll('.fade-in');
             animatedElements.forEach(el => {
                 observer.observe(el);
             });
+
+            // Show welcome modal after a short delay
+            setTimeout(() => {
+                showWelcomeModal();
+            }, 500);
         });
     </script>
 
