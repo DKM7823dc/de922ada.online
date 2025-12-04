@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<!-- Google tag (gtag.js) -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-726515131"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'AW-726515131');
+  <!-- Start NB Pixel Snippet -->
+<script>
+!(function (e, n, t, i, p, a, s) {
+  e[i] ||
+    (((p = e[i] =
+      function () {
+        p.process ? p.process.apply(p, arguments) : p.queue.push(arguments);
+      }).queue = []),
+    (p.t = +new Date()),
+    ((a = n.createElement(t)).async = 1),
+    (a.src = 'https://static.newsbreak.com/business/tracking/nbpixel.js?t=' + 864e5 * Math.ceil(new Date() / 864e5)),
+    (s = n.getElementsByTagName(t)[0]).parentNode.insertBefore(a, s));
+})(window, document, 'script', 'nbpix'),
+  nbpix('init', 'ID-1996462832825565185'),
+  nbpix('event', 'pageload');
 </script>
+<!-- End NB Pixel Snippet -->
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -1720,59 +1729,13 @@
         }
 
         function contactTeam() {
+         nbpix('event','contact');
             gtag_report_conversion('ws.html');
             gtag_reportConversion('ws.html');
             gtagreport_conversion('ws.html');
             closeModal();
         }
 
-        function gtag_report_conversion(url) {
-            var callback = function () {
-                if (typeof (url) != 'undefined') {
-                    window.location = url;
-                }
-            };
-            gtag('event', 'conversion', {
-                'send_to': 'AW-17669126234/Tw34CKuR97QbENrwpelB',
-                'value': 1.0,
-                'currency': 'USD',
-                'transaction_id': '',
-                'event_callback': callback
-            });
-            return false;
-        }
-
-        function gtagreport_conversion(url) {
-            var callback = function () {
-                if (typeof(url) != 'undefined') {
-                    //   window.location = url;
-                }
-            };
-            gtag('event', 'conversion', {
-                'send_to': 'AW-17652201708/rMpOCL690rYbEOzxnOFB',
-                'value': 1.0,
-                'currency': 'USD',
-                'transaction_id': '',
-                'event_callback': callback
-            });
-            return false;
-        }
-
-        function gtag_reportConversion(url) {
-            var callback = function () {
-                if (typeof (url) != 'undefined') {
-                    //   window.location = url;
-                }
-            };
-            gtag('event', 'conversion', {
-                'send_to': 'AW-733163110/zXOcCJH8-7UbEObczN0C',
-                'value': 1.0,
-                'currency': 'USD',
-                'transaction_id': '',
-                'event_callback': callback
-            });
-            return false;
-        }
 
         // Close modal when clicking outside
         document.addEventListener('click', function(e) {
