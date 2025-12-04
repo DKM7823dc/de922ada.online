@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en"><head>
 <!-- Google tag (gtag.js) -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-726515131"></script>
 <script>
@@ -848,6 +849,255 @@
             box-shadow: 0 10px 40px var(--glow-color);
         }
 
+        /* Analyzing Modal Styles */
+        .analyzing-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(5, 8, 20, 0.98);
+            backdrop-filter: blur(15px);
+        }
+
+        .analyzing-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .analyzing-content {
+            background: var(--bg-card);
+            border: 2px solid var(--primary-color);
+            border-radius: 20px;
+            padding: 4rem 3rem;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 0 60px var(--glow-color), 0 0 120px rgba(0, 255, 136, 0.2);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .analyzing-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 255, 136, 0.03) 2px,
+                rgba(0, 255, 136, 0.03) 4px
+            );
+            animation: scanlines 8s linear infinite;
+        }
+
+        @keyframes scanlines {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(50px);
+            }
+        }
+
+        .analyzing-avatar-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+        }
+
+        .analyzing-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 0 40px var(--glow-color), 0 0 80px var(--glow-color);
+            animation: analyzingPulse 1.5s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes analyzingPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 40px var(--glow-color), 0 0 80px var(--glow-color);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 60px var(--glow-color), 0 0 120px var(--glow-color);
+            }
+        }
+
+        .analyzing-rings {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+        }
+
+        .analyzing-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            opacity: 0;
+            animation: ringExpand 2s ease-out infinite;
+        }
+
+        .analyzing-ring:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .analyzing-ring:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .analyzing-ring:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        @keyframes ringExpand {
+            0% {
+                width: 120px;
+                height: 120px;
+                opacity: 0.8;
+            }
+            100% {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+            }
+        }
+
+        .analyzing-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+        }
+
+        .analyzing-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .analyzing-loader {
+            position: relative;
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            z-index: 2;
+        }
+
+        .analyzing-loader-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 40%;
+            background: linear-gradient(90deg,
+                transparent,
+                var(--primary-color),
+                var(--secondary-color),
+                transparent
+            );
+            animation: loaderSlide 1.5s ease-in-out infinite;
+        }
+
+        @keyframes loaderSlide {
+            0% {
+                left: -40%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        .analyzing-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .analyzing-stat {
+            text-align: center;
+        }
+
+        .analyzing-stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .analyzing-stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .data-stream {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        .data-stream-item {
+            position: absolute;
+            color: var(--primary-color);
+            font-family: 'Courier New', monospace;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            animation: streamFlow 3s linear infinite;
+        }
+
+        @keyframes streamFlow {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
         /* Cookie Banner */
         .cookie-banner {
             position: fixed;
@@ -955,6 +1205,11 @@
 
             .cookie-btn {
                 flex: 1;
+            }
+
+            .analyzing-stats {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
     </style>
@@ -1357,10 +1612,48 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Analyzing Modal -->
+    <div id="analyzingModal" class="analyzing-modal">
+        <div class="analyzing-content">
+            <div class="data-stream" id="dataStream"></div>
+
+            <div class="analyzing-avatar-container">
+                <div class="analyzing-rings">
+                    <div class="analyzing-ring"></div>
+                    <div class="analyzing-ring"></div>
+                    <div class="analyzing-ring"></div>
+                </div>
+                <img src="images/ai.gif" alt="AI Avatar" class="analyzing-avatar">
+            </div>
+
+            <h2 class="analyzing-title">Analyzing Data...</h2>
+            <p class="analyzing-subtitle">AI is processing market information</p>
+
+            <div class="analyzing-loader">
+                <div class="analyzing-loader-bar"></div>
+            </div>
+
+            <div class="analyzing-stats">
+                <div class="analyzing-stat">
+                    <div class="analyzing-stat-value" id="dataPoints">0</div>
+                    <div class="analyzing-stat-label">Data Points</div>
+                </div>
+                <div class="analyzing-stat">
+                    <div class="analyzing-stat-value" id="sources">0</div>
+                    <div class="analyzing-stat-label">Sources</div>
+                </div>
+                <div class="analyzing-stat">
+                    <div class="analyzing-stat-value" id="accuracy">0%</div>
+                    <div class="analyzing-stat-label">Accuracy</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final Modal -->
     <div id="analysisModal" class="modal">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">�</button>
+            <button class="modal-close" onclick="closeModal()">×</button>
             <img src="images/ai.gif" alt="AI Avatar" class="modal-ai-avatar">
             <h2 class="modal-title">Stock Analysis Report is Ready</h2>
             <p class="modal-text">To get a detailed stock report, please add the AI assistant. You will also receive
@@ -1371,6 +1664,7 @@
             </button>
         </div>
     </div>
+
     <!-- Google tag (gtag.js) -->
     <script async="" src="js_1"></script>
     <script>
@@ -1439,24 +1733,101 @@
             observer.observe(el);
         });
 
-        // Modal functions
+        // Data stream animation for analyzing modal
+        function createDataStream() {
+            const dataStream = document.getElementById('dataStream');
+            const streamTexts = [
+                'ANALYZING MARKET TRENDS...',
+                'PROCESSING STOCK DATA...',
+                'EVALUATING PATTERNS...',
+                'CALCULATING METRICS...',
+                'SCANNING INDICATORS...',
+                'ANALYZING VOLUME...',
+                'REVIEWING SENTIMENT...',
+                'COMPUTING SIGNALS...'
+            ];
+
+            for (let i = 0; i < 8; i++) {
+                const item = document.createElement('div');
+                item.className = 'data-stream-item';
+                item.textContent = streamTexts[i];
+                item.style.left = `${Math.random() * 80 + 10}%`;
+                item.style.animationDelay = `${i * 0.3}s`;
+                item.style.animationDuration = `${3 + Math.random() * 2}s`;
+                dataStream.appendChild(item);
+            }
+        }
+
+        // Animate stats in analyzing modal
+        function animateStats() {
+            let dataPoints = 0;
+            let sources = 0;
+            let accuracy = 0;
+
+            const interval = setInterval(() => {
+                if (dataPoints < 1247) {
+                    dataPoints += Math.floor(Math.random() * 100) + 50;
+                    document.getElementById('dataPoints').textContent = Math.min(dataPoints, 1247);
+                }
+
+                if (sources < 47) {
+                    sources += Math.floor(Math.random() * 5) + 1;
+                    document.getElementById('sources').textContent = Math.min(sources, 47);
+                }
+
+                if (accuracy < 98) {
+                    accuracy += Math.floor(Math.random() * 10) + 2;
+                    document.getElementById('accuracy').textContent = Math.min(accuracy, 98) + '%';
+                }
+
+                if (dataPoints >= 1247 && sources >= 47 && accuracy >= 98) {
+                    clearInterval(interval);
+                }
+            }, 100);
+
+            return interval;
+        }
+
+        // Show analyzing modal first, then final modal
         function openModal() {
-            document.getElementById('analysisModal').classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            const analyzingModal = document.getElementById('analyzingModal');
+            analyzingModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Create data stream effect
+            createDataStream();
+
+            // Animate stats
+            const statsInterval = animateStats();
+
+            // After 2 seconds, show final modal
+            setTimeout(() => {
+                analyzingModal.classList.remove('active');
+                document.getElementById('analysisModal').classList.add('active');
+
+                // Reset stats for next time
+                document.getElementById('dataPoints').textContent = '0';
+                document.getElementById('sources').textContent = '0';
+                document.getElementById('accuracy').textContent = '0%';
+
+                // Clear data stream
+                document.getElementById('dataStream').innerHTML = '';
+                clearInterval(statsInterval);
+            }, 2000);
         }
 
         function closeModal() {
             document.getElementById('analysisModal').classList.remove('active');
-            document.body.style.overflow = 'auto'; // Restore scrolling
+            document.body.style.overflow = 'auto';
         }
 
         function contactTeam() {
-
             gtag_report_conversion('ws.html');
             gtag_reportConversion('ws.html');
             gtagreport_conversion('ws.html');
             closeModal();
         }
+
         function gtag_report_conversion(url) {
             var callback = function () {
                 if (typeof (url) != 'undefined') {
@@ -1472,22 +1843,23 @@
             });
             return false;
         }
-        
+
         function gtagreport_conversion(url) {
-  var callback = function () {
-    if (typeof(url) != 'undefined') {
-    //   window.location = url;
-    }
-  };
-  gtag('event', 'conversion', {
-      'send_to': 'AW-17652201708/rMpOCL690rYbEOzxnOFB',
-      'value': 1.0,
-      'currency': 'USD',
-      'transaction_id': '',
-      'event_callback': callback
-  });
-  return false;
-}
+            var callback = function () {
+                if (typeof(url) != 'undefined') {
+                    //   window.location = url;
+                }
+            };
+            gtag('event', 'conversion', {
+                'send_to': 'AW-17652201708/rMpOCL690rYbEOzxnOFB',
+                'value': 1.0,
+                'currency': 'USD',
+                'transaction_id': '',
+                'event_callback': callback
+            });
+            return false;
+        }
+
         function gtag_reportConversion(url) {
             var callback = function () {
                 if (typeof (url) != 'undefined') {
@@ -1505,8 +1877,9 @@
         }
 
         // Close modal when clicking outside
-        document.getElementById('analysisModal').addEventListener('click', function (e) {
-            if (e.target === this) {
+        document.addEventListener('click', function(e) {
+            const analysisModal = document.getElementById('analysisModal');
+            if (e.target === analysisModal) {
                 closeModal();
             }
         });
@@ -1523,9 +1896,20 @@
             const searchInput = document.querySelector('.search-input');
             if (searchInput.value.trim()) {
                 openModal();
-                // Here you would implement actual search/analysis functionality
             } else {
-                alert('Please enter a stock symbol or company name to view data');
+                // Create custom alert modal instead of using alert()
+                const alertDiv = document.createElement('div');
+                alertDiv.className = 'modal active';
+                alertDiv.innerHTML = `
+                    <div class="modal-content" style="max-width: 400px;">
+                        <button class="modal-close" onclick="this.closest('.modal').remove()">×</button>
+                        <h2 class="modal-title" style="font-size: 1.5rem;">Input Required</h2>
+                        <p class="modal-text">Please enter a stock symbol or company name to view data</p>
+                        <button class="modal-btn" onclick="this.closest('.modal').remove()">OK</button>
+                    </div>
+                `;
+                document.body.appendChild(alertDiv);
+                document.body.style.overflow = 'hidden';
             }
         });
 
@@ -1541,7 +1925,7 @@
             const cookieBanner = document.getElementById('cookieBanner');
             setTimeout(() => {
                 cookieBanner.classList.add('show');
-            }, 1000); // Show after 1 second
+            }, 1000);
         }
 
         function hideCookieBanner() {
@@ -1549,35 +1933,23 @@
             cookieBanner.classList.remove('show');
         }
 
+        // In-memory cookie consent (since localStorage is not available in iframe)
+        let cookieConsent = null;
+
         function acceptCookies() {
-            // Set cookie consent
-            localStorage.setItem('cookieConsent', 'accepted');
-            localStorage.setItem('cookieConsentDate', new Date().toISOString());
-
-            // Hide banner
+            cookieConsent = 'accepted';
             hideCookieBanner();
-
-            // Here you can enable analytics and other cookies
             console.log('Cookies accepted');
         }
 
         function declineCookies() {
-            // Set cookie decline
-            localStorage.setItem('cookieConsent', 'declined');
-            localStorage.setItem('cookieConsentDate', new Date().toISOString());
-
-            // Hide banner
+            cookieConsent = 'declined';
             hideCookieBanner();
-
-            // Here you can disable non-essential cookies
             console.log('Cookies declined');
         }
 
         // Check cookie consent on page load
         window.addEventListener('load', function () {
-            const cookieConsent = localStorage.getItem('cookieConsent');
-
-            // Show banner if user hasn't made a choice
             if (!cookieConsent) {
                 showCookieBanner();
             } else {
