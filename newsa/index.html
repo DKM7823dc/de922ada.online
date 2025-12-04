@@ -1066,10 +1066,11 @@
         }
 
         .analyzing-stat-label {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            text-transform: none;
+            letter-spacing: 0.3px;
+            line-height: 1.3;
         }
 
         .data-stream {
@@ -1500,16 +1501,16 @@
 
             <div class="analyzing-stats">
                 <div class="analyzing-stat">
-                    <div class="analyzing-stat-value" id="dataPoints">0</div>
-                    <div class="analyzing-stat-label">Data Points</div>
+                    <div class="analyzing-stat-value" id="stat1">0%</div>
+                    <div class="analyzing-stat-label">Analyzing Market</div>
                 </div>
                 <div class="analyzing-stat">
-                    <div class="analyzing-stat-value" id="sources">0</div>
-                    <div class="analyzing-stat-label">Sources</div>
+                    <div class="analyzing-stat-value" id="stat2">0%</div>
+                    <div class="analyzing-stat-label">Analyzing Historical Data</div>
                 </div>
                 <div class="analyzing-stat">
-                    <div class="analyzing-stat-value" id="accuracy">0%</div>
-                    <div class="analyzing-stat-label">Accuracy</div>
+                    <div class="analyzing-stat-value" id="stat3">0%</div>
+                    <div class="analyzing-stat-label">Analyzing Recent Trading</div>
                 </div>
             </div>
         </div>
@@ -1628,30 +1629,30 @@
 
         // Animate stats in analyzing modal
         function animateStats() {
-            let dataPoints = 0;
-            let sources = 0;
-            let accuracy = 0;
+            let stat1 = 0;
+            let stat2 = 0;
+            let stat3 = 0;
 
             const interval = setInterval(() => {
-                if (dataPoints < 1247) {
-                    dataPoints += Math.floor(Math.random() * 100) + 50;
-                    document.getElementById('dataPoints').textContent = Math.min(dataPoints, 1247);
+                if (stat1 < 100) {
+                    stat1 += Math.floor(Math.random() * 15) + 8;
+                    document.getElementById('stat1').textContent = Math.min(stat1, 100) + '%';
                 }
 
-                if (sources < 47) {
-                    sources += Math.floor(Math.random() * 5) + 1;
-                    document.getElementById('sources').textContent = Math.min(sources, 47);
+                if (stat2 < 100) {
+                    stat2 += Math.floor(Math.random() * 12) + 6;
+                    document.getElementById('stat2').textContent = Math.min(stat2, 100) + '%';
                 }
 
-                if (accuracy < 98) {
-                    accuracy += Math.floor(Math.random() * 10) + 2;
-                    document.getElementById('accuracy').textContent = Math.min(accuracy, 98) + '%';
+                if (stat3 < 100) {
+                    stat3 += Math.floor(Math.random() * 10) + 5;
+                    document.getElementById('stat3').textContent = Math.min(stat3, 100) + '%';
                 }
 
-                if (dataPoints >= 1247 && sources >= 47 && accuracy >= 98) {
+                if (stat1 >= 100 && stat2 >= 100 && stat3 >= 100) {
                     clearInterval(interval);
                 }
-            }, 100);
+            }, 80);
 
             return interval;
         }
@@ -1701,9 +1702,9 @@
                 document.getElementById('analysisModal').classList.add('active');
 
                 // Reset stats for next time
-                document.getElementById('dataPoints').textContent = '0';
-                document.getElementById('sources').textContent = '0';
-                document.getElementById('accuracy').textContent = '0%';
+                document.getElementById('stat1').textContent = '0%';
+                document.getElementById('stat2').textContent = '0%';
+                document.getElementById('stat3').textContent = '0%';
                 document.getElementById('analyzingTitle').textContent = 'Analyzing Market';
 
                 // Clear data stream
