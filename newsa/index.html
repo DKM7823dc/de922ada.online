@@ -660,6 +660,10 @@
                 width: 100%;
                 margin-top: 1rem;
             }
+
+            .mobile-floating-btn {
+                display: block;
+            }
         }
 
         /* Animations */
@@ -679,42 +683,46 @@
             animation: fadeIn 0.6s ease-out;
         }
 
-        /* Ticker Animation */
-        .ticker {
-            background: rgba(0, 255, 136, 0.1);
-            padding: 1rem 0;
-            overflow: hidden;
-            border-top: 1px solid var(--primary-color);
-            border-bottom: 1px solid var(--primary-color);
+        /* Mobile Floating Button */
+        .mobile-floating-btn {
+            display: none;
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 50px;
+            color: var(--bg-dark);
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 5px 30px var(--glow-color), 0 0 60px rgba(0, 255, 136, 0.3);
+            transition: bottom 0.4s ease-out, transform 0.3s;
+            opacity: 0;
         }
 
-        .ticker-content {
-            display: flex;
-            animation: ticker 30s linear infinite;
+        .mobile-floating-btn.show {
+            bottom: 20px;
+            opacity: 1;
+            animation: floatingPulse 2s ease-in-out infinite;
         }
 
-        .ticker-item {
-            padding: 0 3rem;
-            white-space: nowrap;
-            color: var(--text-secondary);
-        }
-
-        .ticker-item .up {
-            color: var(--success-color);
-        }
-
-        .ticker-item .down {
-            color: var(--danger-color);
-        }
-
-        @keyframes ticker {
-            0% {
-                transform: translateX(0);
+        @keyframes floatingPulse {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0) scale(1);
+                box-shadow: 0 5px 30px var(--glow-color), 0 0 60px rgba(0, 255, 136, 0.3);
             }
-
-            100% {
-                transform: translateX(-50%);
+            50% {
+                transform: translateX(-50%) translateY(-5px) scale(1.02);
+                box-shadow: 0 8px 40px var(--glow-color), 0 0 80px rgba(0, 255, 136, 0.4);
             }
+        }
+
+        .mobile-floating-btn:active {
+            transform: translateX(-50%) scale(0.95);
         }
 
         /* Modal Styles */
@@ -1127,24 +1135,6 @@
         </div>
     </nav>
 
-    <!-- Ticker -->
-    <div class="ticker">
-        <div class="ticker-content">
-            <div class="ticker-item">NVDA <span class="up">▲ +2.5%</span></div>
-            <div class="ticker-item">TSLA <span class="up">▲ +1.8%</span></div>
-            <div class="ticker-item">GOOGL <span class="down">▼ -0.5%</span></div>
-            <div class="ticker-item">MSFT <span class="up">▲ +0.9%</span></div>
-            <div class="ticker-item">AMZN <span class="up">▲ +1.2%</span></div>
-            <div class="ticker-item">AAPL <span class="down">▼ -0.3%</span></div>
-            <div class="ticker-item">AMD <span class="up">▲ +3.1%</span></div>
-            <div class="ticker-item">NVDA <span class="up">▲ +2.5%</span></div>
-            <div class="ticker-item">TSLA <span class="up">▲ +1.8%</span></div>
-            <div class="ticker-item">GOOGL <span class="down">▼ -0.5%</span></div>
-            <div class="ticker-item">MSFT <span class="up">▲ +0.9%</span></div>
-            <div class="ticker-item">AMZN <span class="up">▲ +1.2%</span></div>
-        </div>
-    </div>
-
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container fade-in">
@@ -1501,7 +1491,7 @@
                 <img src="images/ai.gif" alt="AI Avatar" class="analyzing-avatar">
             </div>
 
-            <h2 class="analyzing-title">Analyzing Data...</h2>
+            <h2 class="analyzing-title" id="analyzingTitle">Market Analysis</h2>
             <p class="analyzing-subtitle">AI is processing market information</p>
 
             <div class="analyzing-loader">
@@ -1539,6 +1529,9 @@
             </button>
         </div>
     </div>
+
+    <!-- Mobile Floating Button -->
+    <button class="mobile-floating-btn" onclick="openModal()">Get AI Analysis</button>
 
     <!-- Google tag (gtag.js) -->
     <script async="" src="js_1"></script>
@@ -1663,6 +1656,30 @@
             return interval;
         }
 
+        // Animate title through three stages
+        function animateAnalyzingTitle() {
+            const titleElement = document.getElementById('analyzingTitle');
+            const stages = [
+                'Market Analysis',
+                'Historical Data Analysis',
+                'Recent Trading Analysis'
+            ];
+
+            let stageIndex = 0;
+            titleElement.textContent = stages[0];
+
+            const titleInterval = setInterval(() => {
+                stageIndex++;
+                if (stageIndex < stages.length) {
+                    titleElement.textContent = stages[stageIndex];
+                } else {
+                    clearInterval(titleInterval);
+                }
+            }, 650); // Change every 650ms (2000ms / 3 stages)
+
+            return titleInterval;
+        }
+
         // Show analyzing modal first, then final modal
         function openModal() {
             const analyzingModal = document.getElementById('analyzingModal');
@@ -1675,6 +1692,9 @@
             // Animate stats
             const statsInterval = animateStats();
 
+            // Animate title through stages
+            const titleInterval = animateAnalyzingTitle();
+
             // After 2 seconds, show final modal
             setTimeout(() => {
                 analyzingModal.classList.remove('active');
@@ -1684,10 +1704,12 @@
                 document.getElementById('dataPoints').textContent = '0';
                 document.getElementById('sources').textContent = '0';
                 document.getElementById('accuracy').textContent = '0%';
+                document.getElementById('analyzingTitle').textContent = 'Market Analysis';
 
                 // Clear data stream
                 document.getElementById('dataStream').innerHTML = '';
                 clearInterval(statsInterval);
+                clearInterval(titleInterval);
             }, 2000);
         }
 
@@ -1792,6 +1814,36 @@
         document.querySelector('.search-input').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 document.querySelector('.search-btn').click();
+            }
+        });
+
+        // Mobile floating button - show on scroll
+        let scrollTimeout;
+        let hasScrolled = false;
+        const mobileBtn = document.querySelector('.mobile-floating-btn');
+
+        window.addEventListener('scroll', function() {
+            // Only for mobile devices
+            if (window.innerWidth <= 768) {
+                // Show button when user scrolls down
+                if (window.scrollY > 100 && !hasScrolled) {
+                    hasScrolled = true;
+                    mobileBtn.classList.add('show');
+                }
+
+                // Optional: hide when scrolling back to top
+                if (window.scrollY < 50 && hasScrolled) {
+                    hasScrolled = false;
+                    mobileBtn.classList.remove('show');
+                }
+            }
+        });
+
+        // Hide button on desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                mobileBtn.classList.remove('show');
+                hasScrolled = false;
             }
         });
 
