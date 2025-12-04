@@ -625,6 +625,10 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 0 6rem;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
@@ -636,6 +640,7 @@
             .hero-ai-avatar {
                 width: 100px;
                 height: 100px;
+                margin: 0 auto 1.5rem;
             }
 
             .nav-links {
@@ -746,7 +751,7 @@
             background: var(--bg-card);
             border: 2px solid var(--primary-color);
             border-radius: 20px;
-            padding: 2.5rem 2rem;
+            padding: 2.5rem;
             max-width: 450px;
             width: 90%;
             position: relative;
@@ -867,8 +872,8 @@
             background: var(--bg-card);
             border: 2px solid var(--primary-color);
             border-radius: 20px;
-            padding: 2.5rem 2rem;
-            max-width: 380px;
+            padding: 2.5rem;
+            max-width: 450px;
             width: 90%;
             position: relative;
             box-shadow: 0 0 60px var(--glow-color), 0 0 120px rgba(0, 255, 136, 0.2);
@@ -1093,115 +1098,7 @@
             }
         }
 
-        /* Cookie Banner */
-        .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--bg-card);
-            backdrop-filter: blur(10px);
-            border-top: 2px solid var(--primary-color);
-            padding: 1.5rem;
-            z-index: 9998;
-            box-shadow: 0 -5px 30px var(--glow-color);
-            transform: translateY(100%);
-            transition: transform 0.4s ease-out;
-        }
-
-        .cookie-banner.show {
-            transform: translateY(0);
-        }
-
-        .cookie-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .cookie-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .cookie-text h4 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .cookie-text p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .cookie-text a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .cookie-text a:hover {
-            color: var(--primary-color);
-        }
-
-        .cookie-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .cookie-btn {
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .cookie-btn.accept {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: var(--bg-dark);
-            box-shadow: 0 3px 15px var(--glow-color);
-        }
-
-        .cookie-btn.accept:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 25px var(--glow-color);
-        }
-
-        .cookie-btn.decline {
-            background: transparent;
-            color: var(--text-secondary);
-            border: 1px solid var(--text-secondary);
-        }
-
-        .cookie-btn.decline:hover {
-            color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-
         @media (max-width: 768px) {
-            .cookie-content {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .cookie-buttons {
-                width: 100%;
-            }
-
-            .cookie-btn {
-                flex: 1;
-            }
-
             .analyzing-stats {
                 flex-direction: column;
                 gap: 1rem;
@@ -1589,23 +1486,6 @@
         </div>
     </footer>
 
-    <!-- Cookie Consent Banner -->
-    <div id="cookieBanner" class="cookie-banner">
-        <div class="cookie-content">
-            <div class="cookie-text">
-                <h4>🍪 Cookie Notice</h4>
-                <p>We use cookies to improve your browsing experience and analyze website traffic. By continuing to use
-                    this website, you agree to our
-                    <a href="https://trendshub.top/privacy.html">Privacy Policy</a> and
-                    <a href="https://trendshub.top/terms.html">Terms of Service</a>.
-                </p>
-            </div>
-            <div class="cookie-buttons">
-                <button class="cookie-btn decline" onclick="declineCookies()">Decline</button>
-                <button class="cookie-btn accept" onclick="acceptCookies()">Accept All</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Analyzing Modal -->
     <div id="analyzingModal" class="analyzing-modal">
@@ -1915,42 +1795,6 @@
             }
         });
 
-        // Cookie Banner Functions
-        function showCookieBanner() {
-            const cookieBanner = document.getElementById('cookieBanner');
-            setTimeout(() => {
-                cookieBanner.classList.add('show');
-            }, 1000);
-        }
-
-        function hideCookieBanner() {
-            const cookieBanner = document.getElementById('cookieBanner');
-            cookieBanner.classList.remove('show');
-        }
-
-        // In-memory cookie consent (since localStorage is not available in iframe)
-        let cookieConsent = null;
-
-        function acceptCookies() {
-            cookieConsent = 'accepted';
-            hideCookieBanner();
-            console.log('Cookies accepted');
-        }
-
-        function declineCookies() {
-            cookieConsent = 'declined';
-            hideCookieBanner();
-            console.log('Cookies declined');
-        }
-
-        // Check cookie consent on page load
-        window.addEventListener('load', function () {
-            if (!cookieConsent) {
-                showCookieBanner();
-            } else {
-                console.log('Cookie consent status:', cookieConsent);
-            }
-        });
     </script>
 
 
