@@ -633,6 +633,11 @@
                 font-size: 1rem;
             }
 
+            .hero-ai-avatar {
+                width: 100px;
+                height: 100px;
+            }
+
             .nav-links {
                 gap: 1rem;
                 font-size: 0.9rem;
@@ -741,8 +746,8 @@
             background: var(--bg-card);
             border: 2px solid var(--primary-color);
             border-radius: 20px;
-            padding: 3rem;
-            max-width: 600px;
+            padding: 2.5rem 2rem;
+            max-width: 450px;
             width: 90%;
             position: relative;
             box-shadow: 0 0 50px var(--glow-color), 0 0 100px var(--glow-color);
@@ -781,9 +786,9 @@
         }
 
         .modal-ai-avatar {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 2rem;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
             border-radius: 50%;
             border: 3px solid var(--primary-color);
             box-shadow: 0 0 30px var(--glow-color);
@@ -805,9 +810,9 @@
         }
 
         .modal-title {
-            font-size: 2rem;
+            font-size: 1.6rem;
             color: var(--primary-color);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             background-clip: text;
             -webkit-background-clip: text;
@@ -816,24 +821,14 @@
 
         .modal-text {
             color: var(--text-secondary);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .modal-notice {
-            color: var(--warning-color);
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: rgba(245, 158, 11, 0.1);
-            border-radius: 10px;
-            border: 1px solid rgba(245, 158, 11, 0.3);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.8rem;
         }
 
         .modal-btn {
-            padding: 1.2rem 3rem;
-            font-size: 1.1rem;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             border: none;
             border-radius: 50px;
@@ -872,8 +867,8 @@
             background: var(--bg-card);
             border: 2px solid var(--primary-color);
             border-radius: 20px;
-            padding: 4rem 3rem;
-            max-width: 500px;
+            padding: 2.5rem 2rem;
+            max-width: 380px;
             width: 90%;
             position: relative;
             box-shadow: 0 0 60px var(--glow-color), 0 0 120px rgba(0, 255, 136, 0.2);
@@ -909,14 +904,14 @@
 
         .analyzing-avatar-container {
             position: relative;
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 2rem;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
         }
 
         .analyzing-avatar {
-            width: 120px;
-            height: 120px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             border: 3px solid var(--primary-color);
             box-shadow: 0 0 40px var(--glow-color), 0 0 80px var(--glow-color);
@@ -970,21 +965,21 @@
 
         @keyframes ringExpand {
             0% {
-                width: 120px;
-                height: 120px;
+                width: 80px;
+                height: 80px;
                 opacity: 0.8;
             }
             100% {
-                width: 200px;
-                height: 200px;
+                width: 150px;
+                height: 150px;
                 opacity: 0;
             }
         }
 
         .analyzing-title {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             background-clip: text;
             -webkit-background-clip: text;
@@ -996,8 +991,8 @@
 
         .analyzing-subtitle {
             color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
             position: relative;
             z-index: 2;
         }
@@ -1050,7 +1045,7 @@
         }
 
         .analyzing-stat-value {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: bold;
             color: var(--primary-color);
             margin-bottom: 0.3rem;
@@ -1058,10 +1053,10 @@
         }
 
         .analyzing-stat-label {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         .data-stream {
