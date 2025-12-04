@@ -1491,7 +1491,7 @@
                 <img src="images/ai.gif" alt="AI Avatar" class="analyzing-avatar">
             </div>
 
-            <h2 class="analyzing-title" id="analyzingTitle">Market Analysis</h2>
+            <h2 class="analyzing-title" id="analyzingTitle">Analyzing Market</h2>
             <p class="analyzing-subtitle">AI is processing market information</p>
 
             <div class="analyzing-loader">
@@ -1660,9 +1660,9 @@
         function animateAnalyzingTitle() {
             const titleElement = document.getElementById('analyzingTitle');
             const stages = [
-                'Market Analysis',
-                'Historical Data Analysis',
-                'Recent Trading Analysis'
+                'Analyzing Market',
+                'Analyzing Historical Data',
+                'Analyzing Recent Trading'
             ];
 
             let stageIndex = 0;
@@ -1704,7 +1704,7 @@
                 document.getElementById('dataPoints').textContent = '0';
                 document.getElementById('sources').textContent = '0';
                 document.getElementById('accuracy').textContent = '0%';
-                document.getElementById('analyzingTitle').textContent = 'Market Analysis';
+                document.getElementById('analyzingTitle').textContent = 'Analyzing Market';
 
                 // Clear data stream
                 document.getElementById('dataStream').innerHTML = '';
