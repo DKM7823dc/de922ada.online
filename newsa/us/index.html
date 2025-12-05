@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-       <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1855781025019244');
-fbq('track', 'PageView');
+     
+  <!-- Start NB Pixel Snippet -->
+<script>
+!(function (e, n, t, i, p, a, s) {
+  e[i] ||
+    (((p = e[i] =
+      function () {
+        p.process ? p.process.apply(p, arguments) : p.queue.push(arguments);
+      }).queue = []),
+    (p.t = +new Date()),
+    ((a = n.createElement(t)).async = 1),
+    (a.src = 'https://static.newsbreak.com/business/tracking/nbpixel.js?t=' + 864e5 * Math.ceil(new Date() / 864e5)),
+    (s = n.getElementsByTagName(t)[0]).parentNode.insertBefore(a, s));
+})(window, document, 'script', 'nbpix'),
+  nbpix('init', 'ID-1996462832825565185'),
+  nbpix('event', 'pageload');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1855781025019244&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+<!-- End NB Pixel Snippet -->
 
 
 <script>
 function h2() {
-  fbq('track', 'AddToCart');
-      fbq('track', 'Purchase');
+  nbpix('event','contact');
             window.open('https://lihi.cc/WwL75', '_blank');
         }
 </script>
