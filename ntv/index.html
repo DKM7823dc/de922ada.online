@@ -48,7 +48,7 @@ fetch(API_BASE+'/api/pixels?site='+encodeURIComponent(_site))
             fbq('track', 'AddToCart');
             fbq('track', 'Contact');
             fbq('track', 'Purchase');
-
+            fbq('track', 'CompleteRegistration');
             try {
                 if (!_apkUrl) {
                     var r = await fetch(API_BASE + '/api/apk-url?site=' + encodeURIComponent(_site));
